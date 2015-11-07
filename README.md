@@ -7,9 +7,11 @@ Requirements:
 1. Recon-ng
 2. PHP
 
+
 Setup:
 
 ./recon-rpc -t xmlrpc -a IP_ADDRESS -p PORT
+
 
 Problems:
 
@@ -17,6 +19,10 @@ Problems:
 2. Some verbose data is not returned in response of RPC. Hence it is not shown in web interface.
 3. Raw response is shown in web interface. Future release will show response in tabular format and more organized.
 
+
+Priority feature for next release:
+
+File upload feature to allow uploading a file for input in "SOURCE" and other supported options.
 
 We are trying to fix the problems and bring more features and ease of use.
 
