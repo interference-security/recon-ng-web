@@ -12,6 +12,8 @@ Setup:
 
 ./recon-rpc -t xmlrpc -a IP_ADDRESS -p PORT
 
+Run Recon-ng-Web in a PHP supporting web server and set RPC URL in "RPC Settings" page.
+
 
 Problems:
 
@@ -20,9 +22,11 @@ Problems:
 3. Raw response is shown in web interface. Future release will show response in tabular format and more organized.
 
 
-Priority feature for next release:
+Newly added features:
+1. "Upload File" allows uploading file on server which can be used as input file in different modules.
 
-File upload feature to allow uploading a file for input in "SOURCE" and other supported options.
+Note: Recon-ng and Recon-ng-Web should be running on the same server for this feature to work.
+
 
 We are trying to fix the problems and bring more features and ease of use.
 

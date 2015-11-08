@@ -20,6 +20,9 @@
 						<a href="show-modules.php"><span class="glyphicon glyphicon-list"></span> Show Modules</a>
 					</li>
                     <li>
+						<a href="file-upload.php"><span class="glyphicon glyphicon-cloud"></span> Upload File</a>
+					</li>
+                    <li>
 						<a href="reset.php"><span class="glyphicon glyphicon-refresh"></span> Reset</a>
 					</li>
 				</ul>
