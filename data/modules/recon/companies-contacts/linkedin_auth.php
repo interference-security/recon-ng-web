@@ -69,7 +69,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         <table class='table table-condensed'>
             <tr>
                 <td>default</td>
-                <td>SELECT DISTINCT company FROM companies WHERE company IS NOT NULL ORDER BY company</td>
+                <td>SELECT DISTINCT company FROM companies WHERE company IS NOT NULL</td>
             </tr>
             <tr>
                 <td>&lt;string&gt;</td>

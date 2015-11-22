@@ -1,25 +1,22 @@
 <?php
 ini_set('max_execution_time',500);
 //Module details
-$module_name_here = "Jigsaw Contact Enumerator";
-$module_path_here = "recon/companies-contacts/jigsaw/search_contacts";
+$module_name_here = "Meta Data Extractor";
+$module_path_here = "recon/domains-contacts/metacrawler";
 $allowed_actions = ["options", "info"];
 
 //Run module
-if(isset($_POST['module_option_source']) && strlen($_POST['module_option_source'])>0)
+if(isset($_POST['module_option_extract']) && strlen($_POST['module_option_extract'])>0 && isset($_POST['module_option_source']) && strlen($_POST['module_option_source'])>0)
 {
     //Configuration & Functions
-    require_once("../../../../../includes/config.php");
-    require_once("../../../../../includes/functions.php");
+    require_once("../../../../includes/config.php");
+    require_once("../../../../includes/functions.php");
+    $module_extract = urldecode($_POST['module_option_extract']);
     $module_source = urldecode($_POST['module_option_source']);
     $sid = manager_recon("init", NULL);
     $use_module = manager_recon("use", array($module_path_here, $sid));
+    $set_module_extract = manager_recon("set", array('EXTRACT', $module_extract, $sid));
     $set_module_source = manager_recon("set", array('SOURCE', $module_source, $sid));
-    if(isset($_POST['module_option_keywords']) && strlen($_POST['module_option_keywords'])>0)
-    {
-        $module_keywords = urldecode($_POST['module_option_keywords']);
-        $set_module_keywords = manager_recon("set", array('KEYWORDS', $module_keywords, $sid));
-    }
     $run_module = manager_recon("run", $sid);
     echo "<pre>";
     print_r($run_module);
@@ -37,8 +34,10 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         Module path: <b><?php echo $module_path_here; ?></b><br>
         <br><br>
         <form role='form' id='runmodule' action='' method='post'>
-        Keywords: <input type='text' name='module_option_keywords' value="" class='form-control'><br>
-        Source: <input type='text' name='module_option_source' value="default" class='form-control'><br>
+        EXTRACT: <input type='text' name='module_option_extract' value="False" class='form-control'>
+        <br>
+        SOURCE: <input type='text' name='module_option_source' value="default" class='form-control'>
+        <br>
         <button type='submit' class='btn btn-success'>Run</button><br></form>
 <?php
     }
@@ -49,7 +48,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         Path: <?php echo "modules/$module_path_here.py"; ?><br>
         Author: Tim Tomes (@LaNMaSteR53)<br>
         <br>
-        Description:<br>Harvests contacts from the Jigsaw.com API. Updates the 'contacts' table with the results.<br>
+        Description:<br>Searches for files associated with the provided domain(s) and extracts any contact related metadata.<br>
         <br>
         Options:<br>
         <table class='table'>
@@ -63,10 +62,10 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
             </thead>
             <tbody>
                 <tr>
-                    <td>KEYWORDS</td>
-                    <td></td>
-                    <td>no</td>
-                    <td>additional keywords to identify company</td>
+                    <td>EXTRACT</td>
+                    <td>False</td>
+                    <td>yes</td>
+                    <td>extract metadata from discovered files</td>
                 </tr>
                 <tr>
                     <td>SOURCE</td>
@@ -81,7 +80,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         <table class='table table-condensed'>
             <tr>
                 <td>default</td>
-                <td>SELECT DISTINCT company FROM companies WHERE company IS NOT NULL</td>
+                <td>SELECT DISTINCT domain FROM domains WHERE domain IS NOT NULL</td>
             </tr>
             <tr>
                 <td>&lt;string&gt;</td>
@@ -96,6 +95,9 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
                 <td>database query returning one column of inputs</td>
             </tr>
         </table>
+        <br>
+        Comments:<br>
+          * Currently supports doc, docx, xls, xlsx, ppt, pptx, and pdf file types.<br>
         <script>
         $("#runmodule").submit(function(e){    
                 e.preventDefault();  

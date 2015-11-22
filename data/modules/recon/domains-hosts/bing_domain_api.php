@@ -82,7 +82,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         <table class='table table-condensed'>
             <tr>
                 <td>default</td>
-                <td>SELECT DISTINCT domain FROM domains WHERE domain IS NOT NULL ORDER BY domain</td>
+                <td>SELECT DISTINCT domain FROM domains WHERE domain IS NOT NULL</td>
             </tr>
             <tr>
                 <td>&lt;string&gt;</td>

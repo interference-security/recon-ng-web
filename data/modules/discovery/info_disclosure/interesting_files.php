@@ -96,7 +96,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         <table class='table table-condensed'>
             <tr>
                 <td>default</td>
-                <td>SELECT DISTINCT host FROM hosts WHERE host IS NOT NULL ORDER BY host</td>
+                <td>SELECT DISTINCT host FROM hosts WHERE host IS NOT NULL</td>
             </tr>
             <tr>
                 <td>&lt;string&gt;</td>

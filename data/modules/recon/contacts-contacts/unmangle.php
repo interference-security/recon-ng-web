@@ -36,7 +36,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
         Module path: <b><?php echo $module_path_here; ?></b><br>
         <br><br>
         <form role='form' id='runmodule' action='' method='post'>
-        OVERWRITE: <input type='text' name='module_option_overwrite' value="True" class='form-control'><br>
+        OVERWRITE: <input type='text' name='module_option_overwrite' value="False" class='form-control'><br>
         PATTERN: <input type='text' name='module_option_pattern' value="<fn>.<ln>" class='form-control'><br>
         SOURCE: <input type='text' name='module_option_source' value="default" class='form-control'><br>
         <button type='submit' class='btn btn-success'>Run</button><br>
@@ -65,7 +65,7 @@ if(strlen($action)>0 && in_array($action, $allowed_actions))
             <tbody>
                 <tr>
                     <td>OVERWRITE</td>
-                    <td>True</td>
+                    <td>False</td>
                     <td>yes</td>
                     <td>if set to true will update existing contact entry, otherwise it will create a new entry</td>
                 </tr>
